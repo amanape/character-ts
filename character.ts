@@ -28,6 +28,10 @@ class Character {
         this.stats.strength += 2;
         this.stats.agility += 2;
     }
+
+    isAlive(): boolean {
+        return this.stats.health > 0;
+    }
 }
 
 export { Character, CharacterStats };
