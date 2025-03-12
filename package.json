@@ -1,0 +1,27 @@
+{
+  "name": "character-ts",
+  "version": "1.0.0",
+  "description": "A TypeScript-based character system implementation",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "start": "ts-node demo.ts"
+  },
+  "keywords": [
+    "typescript",
+    "character",
+    "rpg",
+    "game"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.15.0",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.0"
+  }
+}
