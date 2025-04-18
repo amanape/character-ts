@@ -8,8 +8,37 @@ interface CombatResult {
 }
 
 class CombatSystem {
-    private static CRIT_CHANCE = 0.1;
-    private static CRIT_MULTIPLIER = 2;
+    static readonly DEFAULT_CRIT_CHANCE = 0.1;
+    static readonly DEFAULT_CRIT_MULTIPLIER = 2;
+    private static critChance = CombatSystem.DEFAULT_CRIT_CHANCE;
+    private static critMultiplier = CombatSystem.DEFAULT_CRIT_MULTIPLIER;
+    private static randomGenerator: () => number = Math.random;
+
+    // For testing purposes only
+    static setRandomGenerator(generator: () => number) {
+        this.randomGenerator = generator;
+    }
+
+    // For testing purposes only
+    static resetRandomGenerator() {
+        this.randomGenerator = Math.random;
+    }
+
+    // For testing purposes only
+    static setCriticalHitChance(chance: number) {
+        this.critChance = chance;
+    }
+
+    // For testing purposes only
+    static setCriticalHitMultiplier(multiplier: number) {
+        this.critMultiplier = multiplier;
+    }
+
+    // For testing purposes only
+    static resetCriticalHitValues() {
+        this.critChance = this.DEFAULT_CRIT_CHANCE;
+        this.critMultiplier = this.DEFAULT_CRIT_MULTIPLIER;
+    }
 
     static calculateDamage(attacker: Character, defender: Character): CombatResult {
         const attackerStats = attacker.getStats();
@@ -19,9 +48,9 @@ class CombatSystem {
         let damage = attackerStats.strength * 2;
         
         // Critical hit calculation
-        const isCritical = Math.random() < CombatSystem.CRIT_CHANCE;
+        const isCritical = this.randomGenerator() < this.critChance;
         if (isCritical) {
-            damage *= CombatSystem.CRIT_MULTIPLIER;
+            damage *= this.critMultiplier;
         }
         
         // Defense reduction
